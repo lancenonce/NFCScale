@@ -1,0 +1,22 @@
+#include "Wire.h"
+#include "PN532_I2C.h"
+#include "PN532.h"
+#include "NfcAdapter.h"
+#include "NdefMessage.h"
+
+PN532_I2C pn532_i2c(Wire);
+
+NfcAdapter nfc = NfcAdapter(pn532_i2c);
+
+if (nfc.tagPresent()) {
+    NdefMessage message = NdefMessage();
+    message.addTextRecord("Hello!");
+    success = nfc.write(message);
+}
+
+#include "PN532_I2C.h"
+          ^~~~~~~~~~~~~
+compilation terminated.
+exit status 1
+PN532_I2C.h: No such file or directory
+Invalid library found in C:\Users\.\Documents\Arduino\libraries\PN532: no headers files (.h) found in C:\Users\.\Documents\Arduino\libraries\PN532
